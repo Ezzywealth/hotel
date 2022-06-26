@@ -1,10 +1,15 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { useAnimation, motion } from "framer-motion";
 
 const Home = () => {
   return (
     <>
-      <motion.div className=' bg-image1 w-full h-[35rem]  md:h-[48rem]'>
+      <motion.div
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className=' bg-image1 w-full h-[35rem]  md:h-[48rem]'
+      >
         <div className=' flex justify-center items-center relative'>
           <div className='absolute top-[9rem]  md:top-[13rem] flex flex-col gap-4 items-center'>
             <h3 className='text-[#FFB598] text-center text-xl font-normal'>

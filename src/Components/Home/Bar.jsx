@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import image3 from "../../assets/image4.png";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Bar = () => {
+  const [ref, inView] = useInView();
+  const controls = useAnimation();
+
+  const barVariant = {
+    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 2 } },
+  };
+
+  useLayoutEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
   return (
     <div className='bg-[#F7FFFA] mt-[1.5rem] flex flex-col md:grid grid-cols-2 md:p-[8.75rem] md:gap-8'>
-      <div className='flex flex-col gap-3 md:gap-6 justify-center items-center md:justify-start md:pr-8'>
+      <motion.div
+        ref={ref}
+        animate={controls}
+        variants={barVariant}
+        initial={{ opacity: 0, x: -50 }}
+        className='flex flex-col gap-3 md:gap-6 justify-center items-center md:justify-start md:pr-8'
+      >
         <h2 className='text-[#142d1e] text-[1.5rem] md:text-[2.5rem]  font-bold'>
           Restuarant & Bar
         </h2>
@@ -21,8 +41,14 @@ const Bar = () => {
         <button className='flex justify-center mb-[2.5rem] items-center mt-4 w-[7rem] h-[2rem] md:w-[11.25rem] border-2 border-solid border-[#333333] md:h-[3.4rem] text-center'>
           Discover more
         </button>
-      </div>
-      <div className='w-full px-4 shrink-0'>
+      </motion.div>
+      <motion.div
+        ref={ref}
+        animate={controls}
+        variants={barVariant}
+        initial={{ opacity: 0, x: 50 }}
+        className='w-full px-4 shrink-0'
+      >
         <img src={image3} alt='image2' className='w-full rounded  bg-cover' />
         <div className='flex gap-1 justify-end'>
           <svg
@@ -52,7 +78,7 @@ const Bar = () => {
             />
           </svg>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

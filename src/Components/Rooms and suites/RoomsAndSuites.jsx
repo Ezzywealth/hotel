@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import data from "./rooms";
 import { BsPeople } from "react-icons/bs";
 import { BiBath } from "react-icons/bi";
 import { BiBed } from "react-icons/bi";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 const RoomsAndSuites = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  const suiteVariants = {
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+    hidden: { opacity: 0 },
+  };
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
   return (
-    <div className='bg-[#9b746466]'>
-      <div className='bg-image4 bg-cover relative h-[768px] w-full flex justify-center items-start '>
+    <motion.div
+      ref={ref}
+      // animate={controls}
+      variants={suiteVariants}
+      className='bg-[#9b746466]'
+    >
+      <motion.div
+        ref={ref}
+        variants={suiteVariants}
+        animate={controls}
+        initial='hidden'
+        className='bg-image4 bg-cover relative h-[768px] w-full flex justify-center items-start '
+      >
         <div className='flex flex-col gap-4 px-2 absolute md:px-[234px] md:gap-8 items-center top-[200px]'>
           <h4 className='text-[#FFB598] text-xl font-normal'>OUR ROOMS</h4>
           <h2 className='text-4xl md:text-6xl text-[#ffffff] font-normal'>
@@ -22,10 +50,14 @@ const RoomsAndSuites = () => {
             Im forever excusing your intentions.
           </p>
         </div>
-      </div>
+      </motion.div>
       <div className='flex flex-col pt-4 pb-4  md:grid md:grid-cols-2 justify-items-center md:gap-y-12 md:gap-x-6 md:py-[140px] md:px-56 bg-[#fff4f0]'>
         {data.map((item) => (
-          <div
+          <motion.div
+            ref={ref}
+            variants={suiteVariants}
+            animate={controls}
+            initial={{ y: 100 }}
             key={item.id}
             className='flex flex-col mx-4 mb-8  items-center bg-white shadow-lg border rounded'
           >
@@ -69,10 +101,10 @@ const RoomsAndSuites = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

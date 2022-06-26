@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import image2 from "../../assets/image2.png";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Rooms = () => {
+  const [ref, inView] = useInView();
+  const controls = useAnimation();
+
+  useLayoutEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  // const roomsVariant = {
+  //   visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
+  //   hidden: { opacity: 0, scale: 0 },
+  // };
+  const roomsVariant = {
+    visible: { y: 0, transition: { duration: 0.7 } },
+    hidden: { y: 300 },
+  };
   return (
-    <div className='bg-[rgba(255, 244, 240, 0.2)] pt-[4rem] mb-[4rem] flex flex-col md:grid grid-cols-2 md:p-[8.75rem] md:gap-12'>
+    <motion.div
+      ref={ref}
+      variants={roomsVariant}
+      animate={controls}
+      initial='hidden'
+      className='bg-[rgba(255, 244, 240, 0.2)] pt-[4rem] mb-[4rem] flex flex-col md:grid grid-cols-2 md:p-[8.75rem] md:gap-12'
+    >
       <div className='flex flex-col gap-3  items-center md:gap-6 md:justify-start md:pr-14'>
         <h2 className='text-[#333333] text-[1.5rem] md:text-[2.5rem] text-center  font-bold'>
           Rooms and Suites
@@ -49,7 +74,7 @@ const Rooms = () => {
           </svg>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

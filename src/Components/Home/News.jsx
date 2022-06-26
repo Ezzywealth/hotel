@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import rec1 from "../../assets/Rectangle 16.png";
 import rec2 from "../../assets/Rectangle 17.png";
 import rec3 from "../../assets/Rectangle 18.png";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const News = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  const newsVariant = {
+    visible: { opacity: 1, scale: 1, transition: { duration: 1.5 } },
+    hidden: { opacity: 0, scale: 0 },
+  };
+
+  useLayoutEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
   return (
-    <div className='relative bg-[#fff6f233]  md:h-[400px] w-full justify-center items-center'>
+    <motion.div
+      ref={ref}
+      animate={controls}
+      initial='hidden'
+      variants={newsVariant}
+      className='relative bg-[#fff6f233]  md:h-[400px] w-full justify-center items-center'
+    >
       <div className='md:pl-[140px] px-4 md:pr-[337px] pt-[3rem] md:pt-[134px] pb-[135px] '>
         <h2 className='md:text-[30px] z-10 w-full text-center text-[1.5rem] text-[#333333] font-bold mb-4 md:w-[625px]'>
           Stay up to date with our Newsletter
@@ -45,7 +66,7 @@ const News = () => {
       <div className='z-0 flex absolute h-full top-0 right-0 gap-1'>
         <img src={rec3} alt='' />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RiFacebookFill } from "react-icons/ri";
 import { GrTwitter } from "react-icons/gr";
 import { FiInstagram } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { FiPhoneCall } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Footer = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  const footerVariant = {
+    visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
+    hidden: { opacity: 0, scale: 0 },
+  };
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
   return (
-    <div className=' grid pt-[2rem] grid-cols-2 md:grid-cols-4 gap-3 md:p-[140px] bg-[#152D1E]'>
+    <motion.div
+      ref={ref}
+      animate={controls}
+      initial='hidden'
+      variants={footerVariant}
+      className=' grid pt-[2rem] grid-cols-2 md:grid-cols-4 gap-3 md:p-[140px] bg-[#152D1E]'
+    >
       <div className='row-start-3 col-span-2 justify-items-center md:row-auto md:col-span-1 px-4'>
         <h2 className='text-[#E3B6A4] mr-1 md:mr-3 text:xl md:text-3xl inline-block text-center md:mb-4'>
           Hotel Reddington
@@ -88,7 +110,7 @@ const Footer = () => {
           customercare@hotelred.com
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

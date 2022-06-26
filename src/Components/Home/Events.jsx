@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Events = () => {
+  const [ref, inView] = useInView();
+  const controls = useAnimation();
+
+  const eventVariant = {
+    visible: { opacity: 1, scale: 1, transition: { duration: 1.3 } },
+    hidden: { opacity: 0.4, scale: 0 },
+  };
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
   return (
-    <div className='bg-image3 w-full h-[40.44rem] flex justify-center items-center'>
+    <motion.div
+      ref={ref}
+      variants={eventVariant}
+      animate={controls}
+      initial='hidden'
+      className='bg-image3 w-full h-[40.44rem] flex justify-center items-center'
+    >
       <div className='flex flex-col px-4 h-[400px] justify-evenly items-center md:px-32'>
         <h2 className='text-white font-medium text-[2rem] md:text-[2.5rem]'>
           Events & Weddings
@@ -21,7 +43,7 @@ const Events = () => {
           Host your events
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
