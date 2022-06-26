@@ -11,7 +11,7 @@ const RoomsAndSuites = () => {
   const [ref, inView] = useInView();
 
   const suiteVariants = {
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.5 } },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1 } },
     hidden: { opacity: 0 },
   };
 
@@ -25,11 +25,12 @@ const RoomsAndSuites = () => {
     <motion.div
       ref={ref}
       // animate={controls}
-      variants={suiteVariants}
+
       className='bg-[#9b746466]'
     >
       <motion.div
-        animate={{ opacity: 1 }}
+        variants={suiteVariants}
+        animate={controls}
         initial='hidden'
         className='bg-image4 bg-cover relative h-[768px] w-full flex justify-center items-start '
       >
@@ -52,10 +53,10 @@ const RoomsAndSuites = () => {
       <div className='flex flex-col pt-4 pb-4  md:grid md:grid-cols-2 justify-items-center md:gap-y-12 md:gap-x-6 md:py-[140px] md:px-56 bg-[#fff4f0]'>
         {data.map((item) => (
           <motion.div
-            ref={ref}
-            variants={suiteVariants}
-            animate={controls}
-            initial={{ y: 100, scale: 0 }}
+            // ref={ref}
+            // variants={suiteVariants}
+            // animate={controls}
+            // initial={{ y: 100, scale: 0 }}
             key={item.id}
             className='flex flex-col mx-4 mb-8  items-center bg-white shadow-lg border rounded'
           >

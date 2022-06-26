@@ -71,7 +71,7 @@ const Contact = () => {
           </div>
         </motion.div>
         <motion.div
-          // variants={contactVariant}
+          variants={contactVariant}
           transition={{ duration: 2 }}
           initial='hidden'
           animate={controls}

@@ -29,17 +29,17 @@ const Footer = () => {
       animate={controls}
       initial='hidden'
       variants={footerVariant}
-      className=' grid pt-[2rem] grid-cols-2 md:grid-cols-4 gap-3 md:p-[140px] bg-[#152D1E]'
+      className=' grid pb-[1rem] pt-[1rem] grid-cols-2 md:grid-cols-4 gap-3 md:p-[140px] bg-[#152D1E]'
     >
-      <div className='row-start-3 col-span-2 justify-items-center md:row-auto md:col-span-1 px-4'>
-        <h2 className='text-[#E3B6A4] mr-1 md:mr-3 text:xl md:text-3xl inline-block text-center md:mb-4'>
+      <div className='row-start-3 mb:8 col-span-2 justify-items-center md:row-auto md:col-span-1 px-4'>
+        <h2 className='text-[#E3B6A4] mr-1 md:mr-3 text-sm md:text:xl md:text-3xl inline-block text-center md:mb-4'>
           Hotel Reddington
         </h2>
         <span className='text-sm text-white font-extralight '>
           &copy;Copyright 2020 Hotel Reddington
         </span>
       </div>
-      <div className='items-start md:col-span-1 ml-20'>
+      <div className='justify-items-start md:col-span-1 ml-7 md:ml-20'>
         <h2 className='text-lg text-white mb-3'>HOTEL</h2>
         <ul className='text-[#BDBDBD] text-sm font-normal'>
           <li>Special Offers</li>
