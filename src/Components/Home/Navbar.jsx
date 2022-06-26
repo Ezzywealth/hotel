@@ -1,18 +1,36 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const menuRef = useRef(null);
+  const menu = document.querySelector("#menu");
   const [menuList, setMenuList] = useState(true);
-  console.log(menuList);
+  const [small, setSmall] = useState(true);
+  const [innerWidth, setInnerWidth] = useState({ width: undefined });
 
-  const handleClick = (e) => {
+  useEffect(() => {
+    const handleResize = () => {
+      setInnerWidth({ width: window.innerWidth });
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const openDrawer = (e) => {
     e.preventDefault();
+    menu.classList.remove("hidden");
+    menu.classList.add("menuList");
     setMenuList(!menuList);
-    const menu = document.querySelector("#menu");
-
-    menu.classList.toggle("hidden");
-    menu.classList.toggle("menuList");
+    setSmall(!small);
+  };
+  const closeDrawer = (e) => {
+    e.preventDefault();
+    menu.classList.add("hidden");
+    menu.classList.remove("menuList");
+    setMenuList(!menuList);
+    setSmall(!small);
   };
   return (
     <div className='relative'>
@@ -20,7 +38,11 @@ const Navbar = () => {
         <div className='text-[#E3B6A4] w-28 h-10 text-center'>
           Hotel Reddington
         </div>
-        <div className='md:hidden pr-4' onClick={(e) => handleClick(e)}>
+
+        <div
+          className='md:hidden pr-4'
+          onClick={(e) => (small ? openDrawer(e) : closeDrawer(e))}
+        >
           {menuList ? (
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -55,9 +77,8 @@ const Navbar = () => {
         </div>
 
         <ul
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => closeDrawer(e)}
           id='menu'
-          ref={menuRef}
           className='hidden text-white md:flex justify-center items-center gap-4 text-base font-Roboto font-light'
         >
           <Link to='/'>

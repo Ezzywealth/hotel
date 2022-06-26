@@ -1,9 +1,10 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (
     <>
-      <div className=' bg-image1 w-full h-[35rem]  md:h-[48rem]'>
+      <motion.div className=' bg-image1 w-full h-[35rem]  md:h-[48rem]'>
         <div className=' flex justify-center items-center relative'>
           <div className='absolute top-[9rem]  md:top-[13rem] flex flex-col gap-4 items-center'>
             <h3 className='text-[#FFB598] text-center text-xl font-normal'>
@@ -17,13 +18,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-      </div>
-      <div className='info'></div>
-      <div className='rooms'></div>
-      <div className='events'></div>
-      <div className='bar'></div>
-      <div className='newsletter'></div>
-      <div className='footer'></div>
+      </motion.div>
     </>
   );
 };
