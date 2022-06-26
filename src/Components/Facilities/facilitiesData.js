@@ -16,37 +16,37 @@ const data = [
   {
     image: Rec1,
     description: "Fitness",
-    id: 8,
+    id: 2,
   },
   {
     image: Rec2,
     description: "Restuarant & Bar",
-    id: 2,
+    id: 3,
   },
   {
     image: Rec3,
     description: "Spa & Sauna",
-    id: 3,
+    id: 4,
   },
   {
     image: Rec4,
     description: "Gift Shop",
-    id: 4,
+    id: 5,
   },
   {
     image: Rec5,
     description: "Children Play Area",
-    id: 5,
+    id: 6,
   },
   {
     image: Rec6,
     description: "Conference Rooms",
-    id: 6,
+    id: 7,
   },
   {
     image: Rec7,
     description: "Car Parking & Washing",
-    id: 7,
+    id: 8,
   },
 ];
 

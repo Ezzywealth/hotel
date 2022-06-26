@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import News from "../Home/News";
 import map from "../../assets/map.png";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const contactVariant = {
+  visible: { opacity: 1, scale: 1, transition: { duration: 1.5 } },
+  hidden: { opacity: 0, scale: 0 },
+};
 const Contact = () => {
+  const controls = useAnimation();
+  const [inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
   return (
-    <div className=' w-full'>
+    <motion.div className=' w-full'>
       <div className='flex flex-col   md:grid md:grid-cols-2 md:px-[141px] bg-[#FFF9F7] md:h-[1100px] md:py-[100px] md:gap-[120px]'>
-        <div className='md:col-span-1 flex align-center flex-col w-full md:gap-5 md:w-[350px]'>
+        <motion.div
+          variants={contactVariant}
+          initial='hidden'
+          animate={controls}
+          className='md:col-span-1 flex align-center flex-col w-full md:gap-5 md:w-[350px]'
+        >
           <h2 className='text-[30px]  md:text-[40px] text-[#722C11] text-center font-medium'>
             CONTACT US
           </h2>
@@ -48,8 +69,14 @@ const Contact = () => {
               </p>
             </div>
           </div>
-        </div>
-        <div className='bg-white w-full px-4 md:px-[1.5rem] md:w-[500px] relative md:h-[560px] flex flex-col gap-1 md:gap-6 pt-8 items-center'>
+        </motion.div>
+        <motion.div
+          // variants={contactVariant}
+          transition={{ duration: 2 }}
+          initial='hidden'
+          animate={controls}
+          className='bg-white w-full px-4 md:px-[1.5rem] md:w-[500px] relative md:h-[560px] flex flex-col gap-1 md:gap-6 pt-8 items-center'
+        >
           <h3 className='text-[20px] font-normal text-center text-[#152D1E]'>
             Talk to Hotel Reddington Customer Care
           </h3>
@@ -112,17 +139,21 @@ const Contact = () => {
               </button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
-      <div className='bg-[#F7FFFA] hidden relative h-[450px] w-full md:flex justify-center'>
-        <img
+      <motion.div className='bg-[#F7FFFA] hidden relative h-[450px] w-full md:flex justify-center'>
+        <motion.img
+          variants={contactVariant}
+          transition={{ duration: 2 }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 0.8 }}
           className='md:absolute  md:w-[1159px] h-[569px] top-[-284px]'
           src={map}
           alt='map'
         />
-      </div>
+      </motion.div>
       <News />
-    </div>
+    </motion.div>
   );
 };
 

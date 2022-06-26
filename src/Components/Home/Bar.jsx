@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from "react";
 import image3 from "../../assets/image4.png";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom";
 
 const Bar = () => {
   const [ref, inView] = useInView();
@@ -38,9 +39,11 @@ const Bar = () => {
           give in to my pretendings, which forvgive you each time. Without me
           knowing, they
         </p>
-        <button className='flex justify-center mb-[2.5rem] items-center mt-4 w-[7rem] h-[2rem] md:w-[11.25rem] border-2 border-solid border-[#333333] md:h-[3.4rem] text-center'>
-          Discover more
-        </button>
+        <Link to='/facilities'>
+          <button className='flex justify-center mb-[2.5rem] items-center mt-4 w-[7rem] h-[2rem] md:w-[11.25rem] border-2 border-solid border-[#333333] md:h-[3.4rem] text-center'>
+            Discover more
+          </button>
+        </Link>
       </motion.div>
       <motion.div
         ref={ref}

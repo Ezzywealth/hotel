@@ -13,7 +13,7 @@ const Footer = () => {
   const [ref, inView] = useInView();
 
   const footerVariant = {
-    visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
+    visible: { opacity: 1, scale: 1, transition: { duration: 2 } },
     hidden: { opacity: 0, scale: 0 },
   };
 

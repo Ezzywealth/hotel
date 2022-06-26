@@ -26,10 +26,10 @@ const Events = () => {
       className='bg-image3 w-full h-[40.44rem] flex justify-center items-center'
     >
       <div className='flex flex-col px-4 h-[400px] justify-evenly items-center md:px-32'>
-        <h2 className='text-white font-medium text-[2rem] md:text-[2.5rem]'>
+        <h2 className='text-white font-medium text-[2rem] md:text-[2.5rem] font-[Bell-MT]'>
           Events & Weddings
         </h2>
-        <p className='text-center text-sm w-full md:text-lg font-thin md:w-[57rem]  text-white'>
+        <p className='text-center text-lg w-full md:text-lg font-normal md:w-[57rem] font-[Bell-MT]  text-white'>
           Right under my feet is air made of bricks. Pulls me down turns me weak
           for you, i find myself repearing like broken tune and Im forever
           excusing your intentions. I give in to my pretendings, which forvgive

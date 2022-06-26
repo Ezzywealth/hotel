@@ -17,7 +17,7 @@
   padding: 1rem 2rem;
   animation: menu 1s linear;
 }
-
+/* 
 @keyframes menu {
   from {
     left: -100%;
@@ -26,3 +26,27 @@
     left: 0%;
   }
 }
+
+#right {
+  animation: right 2s linear;
+}
+@keyframes right {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+#left {
+  animation: left 2s linear;
+}
+@keyframes left {
+  from {
+    margin-top: 100%;
+  }
+  to {
+    margin-top: 0%;
+  }
+} */

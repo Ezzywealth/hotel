@@ -79,7 +79,7 @@ const Navbar = () => {
         <ul
           onClick={(e) => closeDrawer(e)}
           id='menu'
-          className='hidden text-white md:flex justify-center items-center gap-4 text-base font-Roboto font-light'
+          className='hidden text-white font-[Graphik] text-[14px] md:flex justify-center items-center gap-[36px]  font-light'
         >
           <Link to='/'>
             <li className='li'>Home</li>
